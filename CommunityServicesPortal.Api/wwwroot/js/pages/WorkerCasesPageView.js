@@ -13,7 +13,7 @@ function workerCasesPageView() {
             </div>
             <div class="field">
                 <label for="assigned-to">Tildelt saksbehandler</label>
-                <select id="assigned-to" name="assignedTo">${workerOptionsView(filters.assignedTo, 'Alle saksbehandlere')}</select>
+                <select id="assigned-to" name="assignedTo">${caseWorkerOptionsView(model.workers, filters.assignedTo, 'Alle saksbehandlere')}</select>
             </div>
             <button id="worker-filter-submit" class="secondary">Vis saker</button>
         </form>

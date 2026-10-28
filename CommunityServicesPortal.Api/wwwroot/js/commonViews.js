@@ -61,10 +61,10 @@ function optionsView(names, selected, emptyLabel) {
     return html;
 }
 
-function workerOptionsView(selected, emptyLabel) {
+function caseWorkerOptionsView(workers, selected, emptyLabel) {
     let html = optionView('', emptyLabel, selected);
-    for (let i = 0; i < model.workers.length; i++) {
-        const worker = model.workers[i];
+    for (let i = 0; i < workers.length; i++) {
+        const worker = workers[i];
         html += optionView(worker.id, worker.name, selected);
     }
     return html;

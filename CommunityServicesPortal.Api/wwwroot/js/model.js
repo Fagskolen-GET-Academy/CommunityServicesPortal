@@ -1,4 +1,20 @@
 // Én modell: appvalg, arbeidsutkast og domenedata har hver sin plass.
+function createEmptyCaseDraft() {
+    return {
+        type: 'Problem',
+        title: '',
+        description: '',
+        location: '',
+        publicationSetting: 'PublicAnonymous',
+        impactLevel: '',
+        isSafetyRisk: '',
+        observedChange: '',
+        mayGetWorse: '',
+        proposedImprovement: '',
+        expectedBenefit: ''
+    };
+}
+
 const model = {
     app: {
         currentPage: 'public',
@@ -26,19 +42,7 @@ const model = {
             status: '',
             assignedTo: ''
         },
-        newCase: {
-            type: 'Problem',
-            title: '',
-            description: '',
-            location: '',
-            publicationSetting: 'PublicAnonymous',
-            impactLevel: '',
-            isSafetyRisk: '',
-            observedChange: '',
-            mayGetWorse: '',
-            proposedImprovement: '',
-            expectedBenefit: ''
-        },
+        newCase: createEmptyCaseDraft(),
         message: '',
         assignment: '',
         nextStatus: ''

@@ -68,29 +68,33 @@ function changeExpectedBenefit(event) {
     model.viewState.newCase.expectedBenefit = event.target.value;
 }
 
+function createCaseRequestFromDraft(draft) {
+    const request = {
+        type: draft.type,
+        title: draft.title,
+        description: draft.description,
+        location: draft.location,
+        publicationSetting: draft.publicationSetting
+    };
+    // Native select-felt har tekstverdier. API-et forventer boolske ja/nei-svar.
+    if (draft.type === 'Problem') {
+        request.impactLevel = draft.impactLevel;
+        request.isSafetyRisk = draft.isSafetyRisk === 'true';
+    } else if (draft.type === 'MaintenanceObservation') {
+        request.observedChange = draft.observedChange;
+        request.mayGetWorse = draft.mayGetWorse === 'true';
+    } else if (draft.type === 'ImprovementSuggestion') {
+        request.proposedImprovement = draft.proposedImprovement;
+        request.expectedBenefit = draft.expectedBenefit;
+    }
+    return request;
+}
+
 async function submitNewCase(event) {
     event.preventDefault();
     if (!beginAction()) return;
     try {
-        const draft = model.viewState.newCase;
-        const caseData = {
-            type: draft.type,
-            title: draft.title,
-            description: draft.description,
-            location: draft.location,
-            publicationSetting: draft.publicationSetting
-        };
-        // Native select-felt har tekstverdier. API-et forventer boolske ja/nei-svar.
-        if (draft.type === 'Problem') {
-            caseData.impactLevel = draft.impactLevel;
-            caseData.isSafetyRisk = draft.isSafetyRisk === 'true';
-        } else if (draft.type === 'MaintenanceObservation') {
-            caseData.observedChange = draft.observedChange;
-            caseData.mayGetWorse = draft.mayGetWorse === 'true';
-        } else if (draft.type === 'ImprovementSuggestion') {
-            caseData.proposedImprovement = draft.proposedImprovement;
-            caseData.expectedBenefit = draft.expectedBenefit;
-        }
+        const caseData = createCaseRequestFromDraft(model.viewState.newCase);
         const created = await createCase(caseData);
         resetNewCaseDraft();
         model.viewState.notice = 'Sak #' + created.id + ' er sendt inn. Du finner den under Mine saker.';
@@ -103,17 +107,5 @@ async function submitNewCase(event) {
 }
 
 function resetNewCaseDraft() {
-    model.viewState.newCase = {
-        type: 'Problem',
-        title: '',
-        description: '',
-        location: '',
-        publicationSetting: 'PublicAnonymous',
-        impactLevel: '',
-        isSafetyRisk: '',
-        observedChange: '',
-        mayGetWorse: '',
-        proposedImprovement: '',
-        expectedBenefit: ''
-    };
+    model.viewState.newCase = createEmptyCaseDraft();
 }

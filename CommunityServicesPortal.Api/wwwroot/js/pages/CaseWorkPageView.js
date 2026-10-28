@@ -12,7 +12,7 @@ function caseWorkPageView() {
                     <form id="assignment-form">
                         <div class="field">
                             <label for="assignment">Saksbehandler</label>
-                            <select id="assignment" name="caseWorkerId">${workerOptionsView(model.viewState.assignment, 'Ikke tildelt')}</select>
+                            <select id="assignment" name="caseWorkerId">${caseWorkerOptionsView(model.workers, model.viewState.assignment, 'Ikke tildelt')}</select>
                         </div>
                         <button id="assignment-submit" class="secondary" ${disabledAttribute()}>Lagre tildeling</button>
                     </form>
