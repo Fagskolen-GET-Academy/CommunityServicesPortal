@@ -1,2 +1,3 @@
-async function loadMyCasesPage() { model.data.myCases = await getMyCases(); }
-function bindMyCasesPage() { /* Links use the common hash navigation. */ }
+async function loadMyCasesPage() {
+    model.myCases = await getMyCases();
+}

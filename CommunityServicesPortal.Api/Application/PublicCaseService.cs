@@ -13,6 +13,8 @@ public sealed class PublicCaseService(CaseRepository cases)
     public void Support(int id, int citizenId)
     {
         var item = Details(id, citizenId);
+        if (cases.Find(id)?.CitizenId == citizenId)
+            throw new RuleException(400, "Du kan ikke registrere støtte på din egen sak.");
         if (!item.CanSupport) throw new RuleException(400, "Støtte er tilgjengelig for problem- og vedlikeholdssaker.");
         if (!cases.Support(id, citizenId)) throw new RuleException(409, "Du har allerede registrert at du opplever dette også.");
     }

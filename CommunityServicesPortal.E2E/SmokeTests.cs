@@ -147,6 +147,15 @@ public class SmokeTests
     public async Task Worker_assigns_changes_status_and_sends_message()
     {
         await LoginAs("worker1@example.test", "Saksoversikt");
+        var assignmentFilter = page.GetByLabel("Tildelt saksbehandler", new() { Exact = true });
+        await Expect(assignmentFilter.Locator("option[value='']")).ToHaveTextAsync("Alle saksbehandlere");
+        await assignmentFilter.SelectOptionAsync("3");
+        await page.GetByRole(AriaRole.Button, new() { Name = "Vis saker", Exact = true }).ClickAsync();
+        await Expect(page.Locator(".result-count")).ToHaveTextAsync("2 saker");
+        await Expect(page.GetByRole(AriaRole.Link, new() { Name = "Sykkelparkering ved holdeplassen" })).ToHaveCountAsync(0);
+        await assignmentFilter.SelectOptionAsync("");
+        await page.GetByRole(AriaRole.Button, new() { Name = "Vis saker", Exact = true }).ClickAsync();
+        await Expect(page.Locator(".result-count")).ToHaveTextAsync("4 saker");
         await page.GetByRole(AriaRole.Link, new() { Name = "Sykkelparkering ved holdeplassen" }).ClickAsync();
         await page.GetByLabel("Saksbehandler", new() { Exact = true }).SelectOptionAsync("3");
         await page.GetByRole(AriaRole.Button, new() { Name = "Lagre tildeling" }).ClickAsync();
@@ -160,6 +169,24 @@ public class SmokeTests
         await page.ReloadAsync();
         await Expect(page.Locator("#page > p .badge")).ToHaveTextAsync("Under behandling");
         await Expect(page.GetByLabel("Saksbehandler", new() { Exact = true })).ToHaveValueAsync("3");
+    }
+
+    [Test]
+    public async Task Own_case_has_no_support_button_but_other_citizens_case_can_be_supported()
+    {
+        await LoginAs("citizen1@example.test", "Mine saker");
+        await page.GetByRole(AriaRole.Link, new() { Name = "Offentlige saker", Exact = true }).ClickAsync();
+        var ownCase = page.GetByRole(AriaRole.Article).Filter(new() { HasText = "Tre over turstien" });
+        await Expect(ownCase).ToBeVisibleAsync();
+        await Expect(ownCase.GetByRole(AriaRole.Button, new() { Name = "Jeg opplever dette også" })).ToHaveCountAsync(0);
+        await Expect(ownCase).ToContainTextAsync("1 opplever dette også");
+        var otherCase = page.GetByRole(AriaRole.Article).Filter(new() { HasText = "Erosjon ved bekken" });
+        await otherCase.GetByRole(AriaRole.Button, new() { Name = "Jeg opplever dette også" }).ClickAsync();
+        await Expect(otherCase).ToContainTextAsync("Registrert av deg");
+        await Expect(otherCase).ToContainTextAsync("1 opplever dette også");
+        await ownCase.GetByRole(AriaRole.Link, new() { Name = "Tre over turstien" }).ClickAsync();
+        await Expect(page.GetByRole(AriaRole.Heading, new() { Name = "Tre over turstien", Exact = true })).ToBeVisibleAsync();
+        await Expect(page.GetByRole(AriaRole.Button, new() { Name = "Jeg opplever dette også" })).ToHaveCountAsync(0);
     }
 
     [Test]

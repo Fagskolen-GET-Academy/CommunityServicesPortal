@@ -43,6 +43,7 @@ CommunityServicesPortal.Api/
       api.js                  # Generisk fetch/JSON/status/credentials
       domainApi.js            # Domenehandlinger og URL-er
       app.js                  # Enkel sidenavigasjon og updateView()
+      AppView.js              # HTML for meny, tilbakemeldinger og valg av side
       commonViews.js          # Små HTML-funksjoner, norske navn, escaping
       pages/                  # XxxPageView.js + XxxPageController.js
 CommunityServicesPortal.Tests/ # NUnit: applikasjonsregler og WebApplicationFactory
@@ -53,10 +54,12 @@ SYSTEM_RULES.md                # Autoritativt testgrunnlag
 
 Backend har én lett lagdelt assembly. Endepunkter henter innlogget bruker og kaller tjenester. Tjenester håndhever regler og eierskap; repositories utfører SQL. Status og historikk lagres atomisk. Offentlige svar bruker en egen DTO med eksplisitt feltliste. Innlogging bruker ASP.NET Core cookie authentication, claims, rollepolicies og `PasswordHasher<User>`.
 
-Frontend viderefører Intro/Emne 2: views leser modellen og returnerer HTML, controllere håndterer handlinger og oppdaterer modellen, så kalles `updateView()`. `model.app` er global app-state, `model.viewState` inneholder utkast og filtre, og `model.data` inneholder domenedata fra API. Det finnes ingen JS-moduler, klasser eller frontend-framework.
+Frontend viderefører Intro/Emne 2: navngitte view-funksjoner leser modellen og returnerer HTML med template literals. Controllere håndterer handlinger, oppdaterer modellen og viser resultatet med `updateView()`. `model.app` inneholder gjeldende side, sak-ID og innlogget bruker. `model.viewState` inneholder skjemautkast, filtre, midlertidige valg, ventetilstand og feilmeldinger. Domenedata ligger direkte på modellen: `model.publicCases`, `model.myCases`, `model.currentCase`, `model.workerCases` og `model.workers`.
+
+API-kall bruker lesbar `async`/`await`. Views bruker vanlige `if` og `for` i stedet for funksjonelle array-kjeder. Felthandlere oppdaterer `viewState` direkte; tekstinntasting tegner ikke skjemaet på nytt for hvert tegn. Sidens controller og de små funksjonene `beginAction()`/`endAction()` viser ventetilstand, tegner resultatet og håndterer fokus. Direkte, navngitte eventbindinger via `getElementById` bevarer eksisterende Content Security Policy, som ikke tillater HTML-eventattributter. Det finnes ingen JS-moduler, klasser, event-bus eller frontend-framework.
 
 ```text
-Brukerhandling → Controller → domainApi.js → api.js → ASP.NET API
+View → Controller → domainApi.js → api.js → ASP.NET API
                          respons → model → updateView() → View
 ```
 
@@ -142,14 +145,14 @@ dotnet test CommunityServicesPortal.E2E
 
 På Windows kan skriptet også kjøres direkte fra PowerShell. På Linux kan `install --with-deps chromium` være nødvendig. Se [Playwrights nettleseroppsett](https://playwright.dev/dotnet/docs/browsers).
 
-Playwright .NET leverer sin egen driver. Du trenger ikke installere Node. Seks smoke-tester dekker opprettelse for hver sakstype, Mine saker, citizen-svar, saksbehandlerens tildeling/status/melding og offentlige saker på desktop/mobil. Testene starter og stopper egen Kestrel-server på en ledig port og bruker separat testdatabase. Appen trenger ikke kjøre på forhånd. Skjermbilder lagres under testens `TestResults`-mappe.
+Playwright .NET leverer sin egen driver. Du trenger ikke installere Node. Sju smoke-tester dekker opprettelse for hver sakstype, Mine saker, citizen-svar, saksbehandlerens filter/tildeling/status/melding, støtte på andres saker og offentlige saker på desktop/mobil. Testene starter og stopper egen Kestrel-server på en ledig port og bruker separat testdatabase. Appen trenger ikke kjøre på forhånd. Skjermbilder lagres under testens `TestResults`-mappe.
 
 Etter installasjon kan alle tester kjøres samlet med `dotnet test CommunityServicesPortal.sln`. Nettlesertestene feiler tydelig hvis Chromium ikke er installert.
 
 ## Avklarte baselinevalg
 
 - Offentlig visning omfatter felles beskrivelse, men ikke typespesifikke data. Privat samtale og historikk vises bare for eier/saksbehandlere.
-- Støtte gjelder problem og vedlikehold, også egne saker. Den kan ikke trekkes tilbake.
+- Støtte gjelder problem og vedlikehold meldt inn av andre. Støtte på egen sak avvises med 400 og vises ikke som knapp. Støtte kan ikke trekkes tilbake.
 - Saksbehandler endrer status eksplisitt etter citizen-svar. Meldinger kan sendes også etter avslutning, uten automatisk gjenåpning.
 - Alle saksbehandlere kan behandle alle saker. Tildeling angir ansvar og begrenser ikke lesetilgang.
 - Skjema/database opprettes automatisk; det finnes ikke migreringsrammeverk. Ved modellendringer i dette caset kan den lokale databasen opprettes på nytt.

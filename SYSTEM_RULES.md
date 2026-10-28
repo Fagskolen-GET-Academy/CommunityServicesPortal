@@ -53,10 +53,11 @@ R25. Tillatte statusoverganger er nøyaktig:
 R26. Alle andre overganger, inkludert samme status og gjenåpning av `Closed`, gir 409. Ugyldig enum-verdi gir 400.
 R27. Hver vellykket statusendring lagrer fra-status, til-status, saksbehandler og UTC-tid i samme transaksjon som endringen. Avvist overgang oppretter ingen historikk. Samtidige endringer fra samme gamle status gir høyst én vellykket endring; den andre gir 409.
 R28. Tildeling, melding og statusendring oppdaterer sakens `UpdatedAt`.
+R28a. Tomt tildelingsfilter i saksoversikten heter «Alle saksbehandlere» og viser alle saker, inkludert saker uten tildeling. Et valgt saksbehandler-ID filtrerer til denne saksbehandlerens saker. Tildelingsfeltet på en enkelt sak bruker fortsatt «Ikke tildelt» for null.
 
 ## «Jeg opplever dette også»
 
-R29. Bare innlogget `Citizen` kan støtte publiserte `Problem` og `MaintenanceObservation`. Dette gjelder også egne saker. Forbedringsforslag gir 400, upubliserte/ukjente saker gir 404.
+R29. Bare innlogget `Citizen` kan støtte publiserte `Problem` og `MaintenanceObservation` opprettet av andre innbyggere. Støtte på egen sak gir 400 uten å endre støtteantallet. `CanSupport` er false for eieren i offentlig API, og støtteknappen vises ikke på egen sak. Forbedringsforslag gir 400, upubliserte/ukjente saker gir 404.
 R30. En innbygger kan registrere støtte én gang per sak. Første gang gir 204; gjentakelse gir 409 uten å øke antallet. Dette gjelder også samtidige kall.
 R31. Offentlige lesere ser samlet antall. Identiteten til dem som støtter publiseres ikke. En innlogget citizen ser om egen støtte er registrert. Det finnes ingen fjerning av støtte, kommentarer eller rangering.
 

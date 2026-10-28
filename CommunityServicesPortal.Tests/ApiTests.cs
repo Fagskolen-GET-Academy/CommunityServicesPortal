@@ -126,19 +126,34 @@ public class ApiTests
         using var token = JsonDocument.Parse(await client.GetStringAsync("/api/auth/csrf"));
         var requests = Enumerable.Range(0, 2).Select(_ =>
         {
-            var request = new HttpRequestMessage(HttpMethod.Post, "/api/public/cases/1001/support") { Content = JsonContent.Create(new { }) };
+            var request = new HttpRequestMessage(HttpMethod.Post, "/api/public/cases/1004/support") { Content = JsonContent.Create(new { }) };
             request.Headers.Add("X-CSRF-TOKEN", token.RootElement.GetProperty("token").GetString());
             return client.SendAsync(request);
         });
         var responses = await Task.WhenAll(requests);
         Assert.That(responses.Select(response => response.StatusCode), Is.EquivalentTo(new[] { HttpStatusCode.NoContent, HttpStatusCode.Conflict }));
         foreach (var response in responses) response.Dispose();
-        var item = await client.GetFromJsonAsync<JsonElement>("/api/public/cases/1001");
-        Assert.That(item.GetProperty("supportCount").GetInt32(), Is.EqualTo(2));
+        var item = await client.GetFromJsonAsync<JsonElement>("/api/public/cases/1004");
+        Assert.That(item.GetProperty("supportCount").GetInt32(), Is.EqualTo(1));
         using var privateSupport = await Write(client, HttpMethod.Post, "/api/public/cases/1003/support", new { });
         Assert.That(privateSupport.StatusCode, Is.EqualTo(HttpStatusCode.NotFound));
         using var suggestionSupport = await Write(client, HttpMethod.Post, "/api/public/cases/1002/support", new { });
         Assert.That(suggestionSupport.StatusCode, Is.EqualTo(HttpStatusCode.BadRequest));
+    }
+
+    [TestCase("citizen1@example.test", 1001)]
+    [TestCase("citizen2@example.test", 1004)]
+    public async Task Citizen_cannot_support_own_public_case(string email, int caseId)
+    {
+        using var client = await Login(email);
+        var before = await client.GetFromJsonAsync<JsonElement>($"/api/public/cases/{caseId}");
+        Assert.That(before.GetProperty("canSupport").GetBoolean(), Is.False);
+        using var response = await Write(client, HttpMethod.Post, $"/api/public/cases/{caseId}/support", new { });
+        Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.BadRequest));
+        var error = await response.Content.ReadFromJsonAsync<JsonElement>();
+        Assert.That(error.GetProperty("message").GetString(), Is.EqualTo("Du kan ikke registrere støtte på din egen sak."));
+        var after = await client.GetFromJsonAsync<JsonElement>($"/api/public/cases/{caseId}");
+        Assert.That(after.GetProperty("supportCount").GetInt32(), Is.EqualTo(before.GetProperty("supportCount").GetInt32()));
     }
 
     [TestCase("Problem", "PublicAnonymous")]

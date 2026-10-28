@@ -30,7 +30,8 @@ public sealed class CaseRepository(Database database)
               CASE WHEN c.PublicationSetting='PublicWithName' THEN u.Name ELSE NULL END AS CitizenName,
               (SELECT COUNT(*) FROM CaseSupport s WHERE s.CaseId=c.Id) AS SupportCount,
               EXISTS(SELECT 1 FROM CaseSupport s WHERE s.CaseId=c.Id AND s.CitizenId=@viewerId) AS SupportedByMe,
-              c.Type IN ('Problem','MaintenanceObservation') AS CanSupport
+              (c.Type IN ('Problem','MaintenanceObservation')
+                AND (@viewerId IS NULL OR c.CitizenId<>@viewerId)) AS CanSupport
             FROM Cases c JOIN Users u ON u.Id=c.CitizenId
             WHERE c.PublicationSetting IN ('PublicAnonymous','PublicWithName')
               AND (@id IS NULL OR c.Id=@id) AND (@type IS NULL OR c.Type=@type)
