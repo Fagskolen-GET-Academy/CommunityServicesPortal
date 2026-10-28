@@ -1,0 +1,85 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{851C8232-79FA-4949-BA25-37BC24757C80}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{5BE6EEAF-12BB-4806-BFDE-FEA6E9794803}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{D2AD9FD5-41F7-4C31-8D37-C92AC73687B4}"
+	ProjectSection(SolutionItems) = preProject
+		src\CommunityServicesPortal.Frontend\css\site.css = src\CommunityServicesPortal.Frontend\css\site.css
+		src\CommunityServicesPortal.Frontend\index.html = src\CommunityServicesPortal.Frontend\index.html
+		src\CommunityServicesPortal.Frontend\js\api.js = src\CommunityServicesPortal.Frontend\js\api.js
+		src\CommunityServicesPortal.Frontend\js\app.js = src\CommunityServicesPortal.Frontend\js\app.js
+		src\CommunityServicesPortal.Frontend\js\AppView.js = src\CommunityServicesPortal.Frontend\js\AppView.js
+		src\CommunityServicesPortal.Frontend\js\commonViews.js = src\CommunityServicesPortal.Frontend\js\commonViews.js
+		src\CommunityServicesPortal.Frontend\js\domainApi.js = src\CommunityServicesPortal.Frontend\js\domainApi.js
+		src\CommunityServicesPortal.Frontend\js\model.js = src\CommunityServicesPortal.Frontend\js\model.js
+		src\CommunityServicesPortal.Frontend\js\pages\CaseWorkPageController.js = src\CommunityServicesPortal.Frontend\js\pages\CaseWorkPageController.js
+		src\CommunityServicesPortal.Frontend\js\pages\CaseWorkPageView.js = src\CommunityServicesPortal.Frontend\js\pages\CaseWorkPageView.js
+		src\CommunityServicesPortal.Frontend\js\pages\LoginPageController.js = src\CommunityServicesPortal.Frontend\js\pages\LoginPageController.js
+		src\CommunityServicesPortal.Frontend\js\pages\LoginPageView.js = src\CommunityServicesPortal.Frontend\js\pages\LoginPageView.js
+		src\CommunityServicesPortal.Frontend\js\pages\MyCasePageController.js = src\CommunityServicesPortal.Frontend\js\pages\MyCasePageController.js
+		src\CommunityServicesPortal.Frontend\js\pages\MyCasePageView.js = src\CommunityServicesPortal.Frontend\js\pages\MyCasePageView.js
+		src\CommunityServicesPortal.Frontend\js\pages\MyCasesPageController.js = src\CommunityServicesPortal.Frontend\js\pages\MyCasesPageController.js
+		src\CommunityServicesPortal.Frontend\js\pages\MyCasesPageView.js = src\CommunityServicesPortal.Frontend\js\pages\MyCasesPageView.js
+		src\CommunityServicesPortal.Frontend\js\pages\NewCasePageController.js = src\CommunityServicesPortal.Frontend\js\pages\NewCasePageController.js
+		src\CommunityServicesPortal.Frontend\js\pages\NewCasePageView.js = src\CommunityServicesPortal.Frontend\js\pages\NewCasePageView.js
+		src\CommunityServicesPortal.Frontend\js\pages\PublicCasesPageController.js = src\CommunityServicesPortal.Frontend\js\pages\PublicCasesPageController.js
+		src\CommunityServicesPortal.Frontend\js\pages\PublicCasesPageView.js = src\CommunityServicesPortal.Frontend\js\pages\PublicCasesPageView.js
+		src\CommunityServicesPortal.Frontend\js\pages\WorkerCasesPageController.js = src\CommunityServicesPortal.Frontend\js\pages\WorkerCasesPageController.js
+		src\CommunityServicesPortal.Frontend\js\pages\WorkerCasesPageView.js = src\CommunityServicesPortal.Frontend\js\pages\WorkerCasesPageView.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{B51340B8-C0BC-4F6C-9629-12786FC0A634}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+		SYSTEM_RULES.md = SYSTEM_RULES.md
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{CF560055-5836-4D49-AD01-6062A77B16BD}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\Reset-Demo.ps1 = scripts\Reset-Demo.ps1
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommunityServicesPortal.Api", "src\CommunityServicesPortal.Api\CommunityServicesPortal.Api.csproj", "{1F4DEADA-DE54-4136-BB6A-57DDFC7232C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommunityServicesPortal.UnitTests", "tests\CommunityServicesPortal.UnitTests\CommunityServicesPortal.UnitTests.csproj", "{6FECCCD6-3388-4A92-A92E-025C7ED08331}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommunityServicesPortal.ApiTests", "tests\CommunityServicesPortal.ApiTests\CommunityServicesPortal.ApiTests.csproj", "{2B06DC9C-A694-494D-915F-A40757B56D2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommunityServicesPortal.E2ETests", "tests\CommunityServicesPortal.E2ETests\CommunityServicesPortal.E2ETests.csproj", "{B3D4C366-88ED-465C-88CF-1A491FC12F4B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1F4DEADA-DE54-4136-BB6A-57DDFC7232C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F4DEADA-DE54-4136-BB6A-57DDFC7232C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F4DEADA-DE54-4136-BB6A-57DDFC7232C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F4DEADA-DE54-4136-BB6A-57DDFC7232C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FECCCD6-3388-4A92-A92E-025C7ED08331}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FECCCD6-3388-4A92-A92E-025C7ED08331}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FECCCD6-3388-4A92-A92E-025C7ED08331}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FECCCD6-3388-4A92-A92E-025C7ED08331}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B06DC9C-A694-494D-915F-A40757B56D2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B06DC9C-A694-494D-915F-A40757B56D2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B06DC9C-A694-494D-915F-A40757B56D2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B06DC9C-A694-494D-915F-A40757B56D2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3D4C366-88ED-465C-88CF-1A491FC12F4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3D4C366-88ED-465C-88CF-1A491FC12F4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3D4C366-88ED-465C-88CF-1A491FC12F4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3D4C366-88ED-465C-88CF-1A491FC12F4B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D2AD9FD5-41F7-4C31-8D37-C92AC73687B4} = {851C8232-79FA-4949-BA25-37BC24757C80}
+		{1F4DEADA-DE54-4136-BB6A-57DDFC7232C5} = {851C8232-79FA-4949-BA25-37BC24757C80}
+		{6FECCCD6-3388-4A92-A92E-025C7ED08331} = {5BE6EEAF-12BB-4806-BFDE-FEA6E9794803}
+		{2B06DC9C-A694-494D-915F-A40757B56D2F} = {5BE6EEAF-12BB-4806-BFDE-FEA6E9794803}
+		{B3D4C366-88ED-465C-88CF-1A491FC12F4B} = {5BE6EEAF-12BB-4806-BFDE-FEA6E9794803}
+	EndGlobalSection
+EndGlobal

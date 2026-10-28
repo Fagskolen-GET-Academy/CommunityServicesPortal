@@ -9,3 +9,7 @@
 *.db-shm
 *.db-wal
 .local/
+**/wwwroot/
+**/playwright-report/
+**/test-results/
+**/.vs/

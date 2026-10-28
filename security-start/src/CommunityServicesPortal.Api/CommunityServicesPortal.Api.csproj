@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.66" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.33" />
+  </ItemGroup>
+  <!-- Frontend-mappen er kilden. wwwroot opprettes ved bygg og følger publisering. -->
+  <ItemGroup>
+    <Content Remove="wwwroot/**/*" />
+  </ItemGroup>
+  <Target Name="CopyFrontend" BeforeTargets="PrepareForBuild">
+    <ItemGroup>
+      <FrontendFiles Include="../CommunityServicesPortal.Frontend/**/*" />
+    </ItemGroup>
+    <RemoveDir Directories="wwwroot" />
+    <Copy SourceFiles="@(FrontendFiles)" DestinationFiles="@(FrontendFiles->'wwwroot/%(RecursiveDir)%(Filename)%(Extension)')" />
+    <ItemGroup>
+      <Content Include="wwwroot/**/*" CopyToPublishDirectory="PreserveNewest" />
+    </ItemGroup>
+  </Target>
+</Project>

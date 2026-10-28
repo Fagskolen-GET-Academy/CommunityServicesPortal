@@ -1,0 +1,15 @@
+**/bin/
+**/obj/
+**/App_Data/
+**/TestResults/
+.vs/
+.playwright-browsers/
+*.user
+*.db
+*.db-shm
+*.db-wal
+.local/
+**/wwwroot/
+**/playwright-report/
+**/test-results/
+**/.vs/
