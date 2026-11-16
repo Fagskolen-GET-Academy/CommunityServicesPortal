@@ -70,11 +70,11 @@ public static class PortalEndpoints
             service.Assign(id, request.CaseWorkerId);
             return Results.NoContent();
         });
-        worker.MapPut("/cases/{id:int}/status", (int id, StatusRequest request, ClaimsPrincipal user, CaseService service) =>
+        app.MapPut("/api/caseworker/cases/{id:int}/status", (int id, StatusRequest request, ClaimsPrincipal user, CaseService service) =>
         {
             service.ChangeStatus(id, request.Status, CurrentUser.Id(user));
             return Results.NoContent();
-        });
+        }).RequireAuthorization();
         worker.MapPost("/cases/{id:int}/messages", (int id, MessageRequest request, ClaimsPrincipal user, CaseService service) =>
         {
             service.WorkerMessage(id, CurrentUser.Id(user), request.Text);
