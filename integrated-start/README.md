@@ -15,7 +15,7 @@ scripts
     Hjelpeverktøy for lokal utvikling og undervisning
 ```
 
-Et undervisningscase for **Testing og kvalitetssikring av programvare**. Innbyggere melder problemer, vedlikeholdsbehov og forbedringsforslag gjennom én kommunal kanal. Saksbehandlere tildeler saker, sender meldinger og følger status.
+Startversjon for samlet kvalitetsarbeid i **Testing og kvalitetssikring av programvare**. Variasjonen bygger på baseline, men inneholder et lite kuratert sett problemer på tvers av sikkerhet, tilgjengelighet og brukervennlighet. Uke 19 bruker varianten sammen med en egen evidenspakke for verifikasjon, prioritering, roadmap og rapportering.
 
 ## Start
 
@@ -28,7 +28,7 @@ dotnet restore CommunityServicesPortal.sln
 dotnet run --project src/CommunityServicesPortal.Api
 ```
 
-Åpne [localhost:5080](http://localhost:5080). Launch-profilen bruker Development og oppretter demo-database automatisk. Fra API-mappen kan du kjøre bare `dotnet run`.
+Åpne [localhost:5084](http://localhost:5084). Launch-profilen bruker Development og oppretter demo-database automatisk. Fra API-mappen kan du kjøre bare `dotnet run`.
 
 ## Demo-kontoer
 
@@ -100,6 +100,10 @@ Skriptet logger inn som Nora og kaller `POST /api/test/reset` med CSRF-token. Ba
 | 1004 | Ahmed | Erosjon ved bekken | InProgress | PublicAnonymous | Nora |
 
 1001 har melding fra Nora og én støtte fra Ahmed. 1003 har et spørsmål fra Jonas. Alle saker har sammenhengende statushistorikk. Nye saker begynner på 1005 etter reset.
+
+## Pedagogisk bruk
+
+Integrated Start er ikke laget som en ny «finn alle feil»-challenge. Studentene får også en evidenspakke med funn av ulik kvalitet. Noen eksisterende regresjonstester kan derfor feile fordi de faktisk avdekker et bevisst introdusert problem. Det er en del av evidensen i uke 19, ikke nødvendigvis en feil i undervisningsoppsettet.
 
 ## Tester
 
