@@ -6,6 +6,7 @@ a:hover { text-decoration-thickness:2px; }
 button,input,select,textarea { font:inherit; }
 button,a,input,select,textarea { touch-action:manipulation; }
 :focus-visible { outline:3px solid #b45900; outline-offset:3px; }
+#filter-type:focus-visible,#filter-status:focus-visible { outline:none; }
 [hidden] { display:none !important; }
 .visually-hidden { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
 .skip-link { position:absolute; top:-100px; left:1rem; z-index:10; padding:.6rem 1rem; background:white; }
@@ -33,7 +34,7 @@ h3 { font-size:1.12rem; }
 .panel,.case-card { background:var(--paper); border:1px solid var(--border); border-radius:8px; padding:1.5rem; }
 .panel { margin-bottom:1.4rem; }
 .narrow { max-width:760px; }
-.two-columns { display:grid; grid-template-columns:minmax(0,1.5fr) minmax(240px,1fr); gap:1.4rem; align-items:start; }
+.two-columns { display:grid; grid-template-columns:minmax(0,1.5fr) minmax(240px,1fr); gap:1.4rem; align-items:start; min-width:760px; }
 .case-list { display:grid; gap:1rem; }
 .case-card { border-left:4px solid #73b6a6; }
 .case-card h2 { margin:.5rem 0; font-size:1.2rem; }
@@ -51,7 +52,7 @@ h3 { font-size:1.12rem; }
 label,.legend { font-weight:650; display:block; margin-bottom:.35rem; }
 input:not([type="radio"]),select,textarea { width:100%; border:1px solid #748a91; border-radius:4px; padding:.6rem .75rem; color:var(--ink); background:white; }
 textarea { resize:vertical; min-height:110px; }
-.hint { display:block; font-size:.88rem; font-weight:400; color:var(--muted); margin:.25rem 0 .45rem; }
+.hint { display:block; font-size:.88rem; font-weight:400; color:#a6b1b4; margin:.25rem 0 .45rem; }
 fieldset { border:1px solid var(--border); padding:1.2rem; border-radius:6px; margin:0 0 1.5rem; min-width:0; }
 legend { font-weight:700; padding:0 .4rem; }
 .radio-option { display:flex; gap:.65rem; align-items:flex-start; font-weight:400; margin:.6rem 0 1rem; }
