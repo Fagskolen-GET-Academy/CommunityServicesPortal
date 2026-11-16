@@ -24,7 +24,7 @@ public sealed class CaseService(CaseRepository cases, UserRepository users)
         item.AssignedCaseWorkerId is int workerId ? users.Find(workerId)?.Name : null,
         cases.Messages(item.Id), cases.History(item.Id));
 
-    public CaseDetails CitizenDetails(int id, int citizenId) => Details(RequireOwner(id, citizenId));
+    public CaseDetails CitizenDetails(int id, int citizenId) => Details(RequireCase(id));
     public CaseDetails WorkerDetails(int id) => Details(RequireCase(id));
 
     public void CitizenMessage(int id, int citizenId, string? text)
