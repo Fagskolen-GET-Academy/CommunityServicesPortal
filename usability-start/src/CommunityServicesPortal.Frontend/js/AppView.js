@@ -29,7 +29,7 @@ function navigationLinkView(route, label, currentPage) {
 function feedbackView() {
     let html = '';
     if (model.viewState.error !== '') {
-        html += /*HTML*/`<div id="error-message" class="error" role="alert" tabindex="-1">Noe gikk galt. Prøv igjen.</div`;
+        html += /*HTML*/`<div id="error-message" class="error" role="alert" tabindex="-1">Noe gikk galt. Prøv igjen.</div>`;
     }
     if (model.viewState.notice !== '') {
         html += /*HTML*/`<div class="notice" role="status">${escapeHtml(model.viewState.notice)}</div>`;
