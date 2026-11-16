@@ -17,7 +17,7 @@ function publicCasesPageView() {
     const filters = model.viewState.publicFilters;
     return /*HTML*/`
         <div class="page-heading">
-            <div>${headingView('Sammen om nærmiljøet', 'Se hva som er meldt inn. Del et problem, et vedlikeholdsbehov eller en idé som gjør nærmiljøet bedre.')}</div>
+            <div>${headingView('Sammen om nærmiljøet', 'Portalen gir samlet innsyn i registrerte henvendelser og understøtter digital medvirkning, kategorisert oppfølging og videre kommunal behandling av forhold i nærmiljøet.')}</div>
             ${createLink}
         </div>
         <h2>Offentlige saker</h2>
