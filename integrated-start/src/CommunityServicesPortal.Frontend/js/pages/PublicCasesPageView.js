@@ -30,7 +30,7 @@ function publicCasesPageView() {
                 <label for="filter-status">Status</label>
                 <select id="filter-status" onchange="model.viewState.publicFilters.status = this.value" name="status">${optionsView(statusNames, filters.status, 'Alle statuser')}</select>
             </div>
-            <button id="public-filter-submit" class="secondary">Vis saker</button>
+            <div id="public-filter-submit" class="button secondary" onclick="submitPublicFilters()">Vis saker</div>
         </form>
         <p class="result-count">${model.publicCases.length} offentlige saker</p>
         <div class="case-list">${cases}</div>
