@@ -2,7 +2,7 @@ function newCasePageView() {
     const draft = model.viewState.newCase;
     let buttonText = 'Send inn sak';
     if (model.viewState.busy) buttonText = 'Sender …';
-    return headingView('Meld inn sak', 'Alle felt er obligatoriske. Velg først hva henvendelsen gjelder.') + /*HTML*/`
+    return headingView('Meld inn sak', 'Registrer henvendelsen med korrekt kategorisering og nødvendige opplysninger før innsending til kommunal behandling.') + /*HTML*/`
         <form id="new-case-form" onsubmit="event.preventDefault(); submitNewCase()" class="panel narrow">
             <div class="field">
                 <label for="type">Hva vil du melde inn?</label>
@@ -18,7 +18,7 @@ function newCasePageView() {
             </div>
             <div class="field">
                 <label for="location">Sted</label>
-                <p class="hint" id="location-help">Beskriv stedet slik at kommunen kan finne fram, for eksempel turstien 200 meter nord for parkeringsplassen.</p>
+                <p class="hint" id="location-help">Angi lokasjon så presist som mulig i henhold til kommunens behov for videre behandling.</p>
                 <input id="location" oninput="model.viewState.newCase.location = this.value" name="location" required maxlength="300" aria-describedby="location-help" value="${escapeHtml(draft.location)}">
             </div>
             <fieldset>
@@ -27,15 +27,15 @@ function newCasePageView() {
             </fieldset>
             <fieldset>
                 <legend>Visning i den åpne portalen</legend>
-                ${publicationOptionView('PublicAnonymous', 'Andre kan se saken og stedet, men ikke hvem som meldte den.')}
-                ${publicationOptionView('PublicWithName', 'Andre kan se saken, stedet og navnet på innsender.')}
-                ${publicationOptionView('NotPublished', 'Saken behandles fortsatt av kommunen, men vises ikke i den offentlige oversikten.')}
+                ${publicationOptionView('PublicAnonymous', 'Saken publiseres med begrenset identitetsvisning.')}
+                ${publicationOptionView('PublicWithName', 'Saken publiseres med utvidet identitetsvisning.')}
+                ${publicationOptionView('NotPublished', 'Saken håndteres uten ordinær portalpublisering.')}
                 <p class="hint">Dette valget gjelder visning i denne portalen. Andre regler om offentlighet og innsyn kan gjelde uavhengig av dette.</p>
                 <p class="hint">Unngå personopplysninger om deg selv eller andre i tekst som skal publiseres.</p>
             </fieldset>
             <div class="actions">
                 <button id="new-case-submit" ${disabledAttribute()}>${buttonText}</button>
-                <a href="#my">Til Mine saker</a>
+                <a href="#my">Tilbake</a>
             </div>
         </form>
     `;
