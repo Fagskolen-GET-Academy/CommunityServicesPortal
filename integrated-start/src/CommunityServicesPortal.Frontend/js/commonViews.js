@@ -1,7 +1,7 @@
 const typeNames = {
-    Problem: 'Problem som bør løses',
-    MaintenanceObservation: 'Vedlikeholdsbehov / observasjon',
-    ImprovementSuggestion: 'Forslag til forbedring'
+    Problem: 'Avvik / hendelse',
+    MaintenanceObservation: 'Vedlikeholdsobservasjon',
+    ImprovementSuggestion: 'Forbedringstiltak'
 };
 const statusNames = {
     Submitted: 'Sendt inn',
