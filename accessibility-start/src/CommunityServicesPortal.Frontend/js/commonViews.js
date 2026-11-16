@@ -78,7 +78,7 @@ function headingView(title, intro, eyebrow) {
     if (eyebrow === undefined) eyebrow = 'Nærmiljøet vårt';
     let html = /*HTML*/`
         <p class="eyebrow">${escapeHtml(eyebrow)}</p>
-        <h1 tabindex="-1">${escapeHtml(title)}</h1>
+        <h1>${escapeHtml(title)}</h1>
     `;
     if (intro) html += /*HTML*/`<p class="intro">${escapeHtml(intro)}</p>`;
     return html;
