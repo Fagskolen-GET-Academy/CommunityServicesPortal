@@ -41,7 +41,7 @@ async function submitNewCase() {
         const caseData = createCaseRequestFromDraft(model.viewState.newCase);
         const created = await createCase(caseData);
         resetNewCaseDraft();
-        model.viewState.notice = 'Sak #' + created.id + ' er sendt inn. Du finner den under Mine saker.';
+        model.viewState.notice = 'Sak #' + created.id + ' er sendt inn. Videre behandling skjer etter gjeldende rutine.';
         location.hash = '#my/' + created.id;
     } catch (error) {
         model.viewState.error = error.message;
