@@ -1,7 +1,7 @@
 const typeNames = {
-    Problem: 'Problem som bør løses',
-    MaintenanceObservation: 'Vedlikeholdsbehov / observasjon',
-    ImprovementSuggestion: 'Forslag til forbedring'
+    Problem: 'Avvik / hendelse',
+    MaintenanceObservation: 'Vedlikeholdsobservasjon',
+    ImprovementSuggestion: 'Forbedringstiltak'
 };
 const statusNames = {
     Submitted: 'Sendt inn',
@@ -11,9 +11,9 @@ const statusNames = {
     Closed: 'Avsluttet'
 };
 const publicationNames = {
-    PublicAnonymous: 'Publiser anonymisert',
-    PublicWithName: 'Publiser med navnet mitt',
-    NotPublished: 'Ikke vis saken i den åpne portalen'
+    PublicAnonymous: 'Anonymisert publisering',
+    PublicWithName: 'Navngitt publisering',
+    NotPublished: 'Skjermet portalvisning'
 };
 const impactNames = { Low: 'Lav', Medium: 'Middels', High: 'Høy' };
 const allowedTransitions = {
