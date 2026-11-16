@@ -15,7 +15,7 @@ scripts
     Hjelpeverktøy for lokal utvikling og undervisning
 ```
 
-Et undervisningscase for **Testing og kvalitetssikring av programvare**. Innbyggere melder problemer, vedlikeholdsbehov og forbedringsforslag gjennom én kommunal kanal. Saksbehandlere tildeler saker, sender meldinger og følger status.
+Startversjon for undervisning i tilgjengelighet og inkluderende design i **Testing og kvalitetssikring av programvare**. Variasjonen bygger på funksjonelt korrekt baseline, men inneholder et begrenset antall bevisst introduserte tilgjengelighetsbarrierer som studentene skal finne gjennom manuell testing, standarder, hjelpemidler og verktøy.
 
 ## Start
 
@@ -28,7 +28,7 @@ dotnet restore CommunityServicesPortal.sln
 dotnet run --project src/CommunityServicesPortal.Api
 ```
 
-Åpne [localhost:5080](http://localhost:5080). Launch-profilen bruker Development og oppretter demo-database automatisk. Fra API-mappen kan du kjøre bare `dotnet run`.
+Åpne [localhost:5082](http://localhost:5082). Launch-profilen bruker Development og oppretter demo-database automatisk. Fra API-mappen kan du kjøre bare `dotnet run`.
 
 ## Demo-kontoer
 
