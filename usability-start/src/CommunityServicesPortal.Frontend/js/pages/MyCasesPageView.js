@@ -8,7 +8,7 @@ function myCasesPageView() {
     }
     return /*HTML*/`
         <div class="page-heading">
-            <div>${headingView('Mine saker', 'Følg status og les meldinger fra kommunen.')}</div>
+            <div>${headingView('Mine saker', 'Se registrerte objekter, behandlingsstatus og tilhørende dialoginformasjon.')}</div>
             <a class="button" href="#new">Meld inn sak</a>
         </div>
         <div class="case-list">${cases}</div>
