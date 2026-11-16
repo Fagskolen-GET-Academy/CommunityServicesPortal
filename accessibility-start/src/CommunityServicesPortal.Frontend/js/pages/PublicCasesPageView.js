@@ -20,17 +20,17 @@ function publicCasesPageView() {
             <div>${headingView('Sammen om nærmiljøet', 'Se hva som er meldt inn. Del et problem, et vedlikeholdsbehov eller en idé som gjør nærmiljøet bedre.')}</div>
             ${createLink}
         </div>
-        <h2>Offentlige saker</h2>
+        <h3>Offentlige saker</h3>
         <form id="public-filters" onsubmit="event.preventDefault(); submitPublicFilters()" class="filters">
             <div class="field">
                 <label for="filter-type">Sakstype</label>
                 <select id="filter-type" onchange="model.viewState.publicFilters.type = this.value" name="type">${optionsView(typeNames, filters.type, 'Alle typer')}</select>
             </div>
             <div class="field">
-                <label for="filter-status">Status</label>
+                <label for="public-status">Status</label>
                 <select id="filter-status" onchange="model.viewState.publicFilters.status = this.value" name="status">${optionsView(statusNames, filters.status, 'Alle statuser')}</select>
             </div>
-            <button id="public-filter-submit" class="secondary">Vis saker</button>
+            <div id="public-filter-submit" class="button secondary" onclick="submitPublicFilters()">Vis saker</div>
         </form>
         <p class="result-count">${model.publicCases.length} offentlige saker</p>
         <div class="case-list">${cases}</div>
